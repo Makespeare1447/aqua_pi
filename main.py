@@ -42,7 +42,6 @@ minutes_old = 0
 cycles = 0                 #cyclenumber for debugging
 emergencystate = False
 lampstate = False
-temperature_list = []
 timestamp_list = []
 seconds_since_start_list = []
 
