@@ -1,0 +1,2 @@
+token = '387161336:AAGKJeu_VaMk0Cn1PyrT0N0cCh3f9ijYwBM'
+chat_id = 7102843
