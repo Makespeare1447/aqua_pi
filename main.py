@@ -45,12 +45,12 @@ lampstate = False
 timestamp_list = []
 seconds_since_start_list = []
 
-filtering = True
+filtering = False
 
 #parameter declaration:
 maxerrors = 5
-lighttime_interval = (10,18)  #time interval for lights on
-main_delay = 1             #delay in seconds for main loop
+lighttime_interval = (10,19)  #time interval for lights on
+main_delay = 2             #delay in seconds for main loop
 #chat_id = set your telegram chat id here (or from configuration file)
 
 #absolute maximum values:
