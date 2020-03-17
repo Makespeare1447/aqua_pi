@@ -45,6 +45,7 @@ lampstate = False
 timestamp_list = []
 seconds_since_start_list = []
 
+filtering = True
 
 #parameter declaration:
 maxerrors = 5
@@ -79,6 +80,11 @@ while(True):
         minutes = getminutes()
         timestamp = gettimestamp()
 
+        #filter:
+        if filtering == True:
+            filter.on()
+        else:
+            filter.off()
 
         #check if lighttime:
         if(hours>=lighttime_interval[0] and hours<lighttime_interval[1]):
