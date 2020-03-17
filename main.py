@@ -17,9 +17,9 @@ from functions_and_modules import *
 #pin declaration:
 #lamp and pump are connected to the double relais module
 #fan1: humidity regulation, fan2: inhouse ventilation (air movement)
-lamp_pin = 17
-filter_pin = 27
-led_fan_pin = 21
+lamp_pin = 20
+filter_pin = 21
+led_fan_pin = 27
 buzzer_pin = 22
 
 
