@@ -4,10 +4,10 @@ from time import sleep
 relais_1 = io.LED(pin=20, active_high=False)
 #relais_2 = io.LED(pin=21, active_high=False)
 
-sleep(2)
+sleep(1)
 relais_1.on()
 #relais_2.on()
-sleep(20)
+sleep(10)
 relais_1.off()
 #relais_2.off()
 
