@@ -112,7 +112,10 @@ while(True):
         else:
             print('light is off\n')
 
-
+        # report by telegram:
+        bot.send_message(chat_id=chat_id, text='Up and running!\nlampstate = {}'.format(lampstate))
+        
+        
         oldhours = hours
         oldminutes = minutes
         cycles = cycles + 1   
