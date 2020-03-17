@@ -16,9 +16,9 @@ from functions_and_modules import *
 
 #pin declaration:
 #lamp and pump are connected to the double relais module
-#fan1: humidity regulation, fan2: inhouse ventilation (air movement)
-lamp_pin = 20
-filter_pin = 21
+
+lamp_pin = 21
+filter_pin = 20
 led_fan_pin = 27
 buzzer_pin = 22
 
@@ -88,7 +88,7 @@ while(True):
 
 
         #light control:
-        if(lighttime==True and emergencystate==False):
+        if(lighttime==True):
             lamp.on()
             lampstate = True
         else:
@@ -118,6 +118,5 @@ while(True):
         print('Error occured! - errorcounter = {}'.format(errorcounter))
         bot.send_message(chat_id, text='Error occured! - errorcounter = {}'.format(errorcounter))
         if errorcounter>=maxerrors:
-            print('5 errors occured - terminating program now...')
             bot.send_message(chat_id, text='{} errors occured - terminating program...'.format(maxerrors))
-            raise ValueError('A very specific bad thing happened')
+            raise ValueError('{} errors occured - program terminated.')
