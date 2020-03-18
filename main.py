@@ -66,7 +66,7 @@ beep(buzzer)      #initial startup beep
 start_time = round(set_starttime(), 1)
 
 print('starting up...\n')
-#bot.send_message(chat_id=chat_id, text='Hello Sir, i am starting up now...\n')
+bot.send_message(chat_id=chat_id, text='Hello Sir, i am starting up now...\n')
 hours = gethours()
 minutes = getminutes()
 oldhours = hours
@@ -80,11 +80,6 @@ while(True):
         minutes = getminutes()
         timestamp = gettimestamp()
 
-        #filter:
-        if filtering == True:
-            filter.on()
-        else:
-            filter.off()
 
         #check if lighttime:
         if(hours>=lighttime_interval[0] and hours<lighttime_interval[1]):
@@ -101,6 +96,11 @@ while(True):
             lamp.off()
             lampstate = False
 
+        #filter:
+        if filtering == True:
+            filter.on()
+        else:
+            filter.off()
 
         #printing out information
         print('Water Temperature: {}'.format(water_temp) + ' deg')
@@ -113,7 +113,8 @@ while(True):
             print('light is off\n')
 
         # report by telegram:
-        bot.send_message(chat_id=chat_id, text='Up and running!\nlampstate = {}'.format(lampstate))
+        if minutes!=oldminutes:
+            bot.send_message(chat_id=chat_id, text='Up and running!\nlampstate = {}'.format(lampstate))
         
         
         oldhours = hours
