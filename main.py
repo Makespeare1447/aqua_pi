@@ -74,59 +74,54 @@ oldminutes = minutes
 ##########################################################   MAIN LOOP  #################################################################################
 
 while(True):
-    try:
-        #get actual time:
-        hours = gethours()
-        minutes = getminutes()
-        timestamp = gettimestamp()
+
+    #get actual time:
+    hours = gethours()
+    minutes = getminutes()
+    timestamp = gettimestamp()
 
 
-        #check if lighttime:
-        if(hours>=lighttime_interval[0] and hours<lighttime_interval[1]):
-            lighttime = True
-        else:
-            lighttime = False
+    #check if lighttime:
+    if(hours>=lighttime_interval[0] and hours<lighttime_interval[1]):
+        lighttime = True
+    else:
+        lighttime = False
 
 
-        #light control:
-        if(lighttime==True):
-            lamp.on()
-            lampstate = True
-        else:
-            lamp.off()
-            lampstate = False
+    #light control:
+    if(lighttime==True):
+        lamp.on()
+        lampstate = True
+    else:
+        lamp.off()
+        lampstate = False
 
-        #filter:
-        if filtering == True:
-            filter.on()
-        else:
-            filter.off()
+    #filter:
+    if filtering == True:
+        filter.on()
+    else:
+        filter.off()
 
-        #printing out information
-        print('Water Temperature: {}'.format(water_temp) + ' deg')
-        print('Led Temperature: {}'.format(led_temp) + ' deg')
-        print('Cycles: {}'.format(cycles))
-        print('Seconds since program start: {}'.format(int(round(time_since_start(start_time), 0))))
-        if lampstate==True:
-            print('light is on\n')
-        else:
-            print('light is off\n')
+    #printing out information
+    print('Water Temperature: {}'.format(water_temp) + ' deg')
+    print('Led Temperature: {}'.format(led_temp) + ' deg')
+    print('Cycles: {}'.format(cycles))
+    print('Seconds since program start: {}'.format(int(round(time_since_start(start_time), 0))))
+    if lampstate==True:
+        print('light is on\n')
+    else:
+        print('light is off\n')
 
-        # report by telegram:
-        if minutes!=oldminutes:
-            bot.send_message(chat_id=chat_id, text='Up and running!\nlampstate = {}'.format(lampstate))
-        
-        
-        oldhours = hours
-        oldminutes = minutes
-        cycles = cycles + 1   
-        sleep(main_delay)  #main delay
+    # report by telegram:
+    if minutes!=oldminutes:
+        try:
+            bot.send_message(chat_id=chat_id, text='Up and running!\nlampstate = {}\nseconds since start: {}'.format(lampstate, int(round(time_since_start(start_time), 0))))
+        except:
+            print('telegram message was not sent successful - maybe network connection dropped out.')
+    
+    oldhours = hours
+    oldminutes = minutes
+    cycles = cycles + 1   
+    sleep(main_delay)  #main delay
 
 
-    except:
-        errorcounter = errorcounter + 1
-        print('Error occured! - errorcounter = {}'.format(errorcounter))
-        bot.send_message(chat_id, text='Error occured! - errorcounter = {}'.format(errorcounter))
-        if errorcounter>=maxerrors:
-            bot.send_message(chat_id, text='{} errors occured - terminating program...'.format(maxerrors))
-            raise ValueError('{} errors occured - program terminated.')
