@@ -116,7 +116,7 @@ while(True):
         try:
             bot.send_message(chat_id=chat_id, text='Up and running!\nlampstate = {}\nruntime: {} seconds'.format(lampstate, int(round(time_since_start(start_time), 0))))
         except:
-            print('telegram message was not sent successful - maybe network connection dropped out.')
+            print('telegram message was not sent successful - maybe network connection dropped out!')
     
     oldhours = hours
     oldminutes = minutes
