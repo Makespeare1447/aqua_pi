@@ -48,7 +48,6 @@ seconds_since_start_list = []
 filtering = True
 
 #parameter declaration:
-maxerrors = 5
 lighttime_interval = (10,19)  #time interval for lights on
 main_delay = 2             #delay in seconds for main loop
 #chat_id = set your telegram chat id here (or from configuration file)
@@ -115,7 +114,7 @@ while(True):
     # report by telegram:
     if minutes!=oldminutes:
         try:
-            bot.send_message(chat_id=chat_id, text='Up and running!\nlampstate = {}\nseconds since start: {}'.format(lampstate, int(round(time_since_start(start_time), 0))))
+            bot.send_message(chat_id=chat_id, text='Up and running!\nlampstate = {}\nruntime: {} seconds'.format(lampstate, int(round(time_since_start(start_time), 0))))
         except:
             print('telegram message was not sent successful - maybe network connection dropped out.')
     
