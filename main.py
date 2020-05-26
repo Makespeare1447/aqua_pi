@@ -18,13 +18,13 @@ from functions_and_modules import *
 #lamp and pump are connected to the double relais module
 
 lamp_pin = 21
-filter_pin = 20
+#filter_pin = 20
 led_fan_pin = 27
 buzzer_pin = 22
 
 
 lamp = io.LED(pin=lamp_pin, active_high=False)
-filter = io.LED(pin=filter_pin, active_high=False)
+
 buzzer = io.TonalBuzzer(buzzer_pin)
 led_fan = io.PWMLED(led_fan_pin)
 
@@ -45,7 +45,7 @@ lampstate = False
 timestamp_list = []
 seconds_since_start_list = []
 
-filtering = True
+
 
 #parameter declaration:
 lighttime_interval = (10,19)  #time interval for lights on
@@ -57,7 +57,7 @@ main_delay = 2             #delay in seconds for main loop
 
 #set device states (setup)
 lamp.off()
-filter.off()
+
 led_fan.off()
 
 beep(buzzer)      #initial startup beep
@@ -95,11 +95,7 @@ while(True):
         lamp.off()
         lampstate = False
 
-    #filter:
-    if filtering == True:
-        filter.on()
-    else:
-        filter.off()
+
 
     #printing out information
     print('Water Temperature: {}'.format(water_temp) + ' deg')
