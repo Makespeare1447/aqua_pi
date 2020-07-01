@@ -24,7 +24,7 @@ buzzer_pin = 22
 
 
 lamp = io.LED(pin=lamp_pin, active_high=False)
-ambient_led = ip.LED(pin=ambient_pin, active_high=False)
+ambient_led = io.LED(pin=ambient_pin, active_high=False)
 
 buzzer = io.TonalBuzzer(buzzer_pin)
 led_fan = io.PWMLED(led_fan_pin)
