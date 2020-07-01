@@ -18,12 +18,13 @@ from functions_and_modules import *
 #lamp and pump are connected to the double relais module
 
 lamp_pin = 21
-#filter_pin = 20
+ambient_pin = 20
 led_fan_pin = 27
 buzzer_pin = 22
 
 
 lamp = io.LED(pin=lamp_pin, active_high=False)
+ambient_led = ip.LED(pin=ambient_pin, active_high=False)
 
 buzzer = io.TonalBuzzer(buzzer_pin)
 led_fan = io.PWMLED(led_fan_pin)
@@ -49,6 +50,7 @@ seconds_since_start_list = []
 
 #parameter declaration:
 lighttime_interval = (9,19)  #time interval for lights on
+ambient_interval = (19,22)
 main_delay = 2             #delay in seconds for main loop
 #chat_id = set your telegram chat id here (or from configuration file)
 
@@ -57,6 +59,7 @@ main_delay = 2             #delay in seconds for main loop
 
 #set device states (setup)
 lamp.off()
+ambient_led.off()
 
 led_fan.off()
 
@@ -86,6 +89,12 @@ while(True):
     else:
         lighttime = False
 
+    #check if ambient_time:
+    if(hours>=ambient_interval[0] and hours<ambient_interval[1]):
+        ambient_time = True
+    else:
+        ambient_time = False
+
 
     #light control:
     if(lighttime==True):
@@ -95,6 +104,12 @@ while(True):
         lamp.off()
         lampstate = False
 
+    
+    #ambient control:
+    if(ambient_time==True):
+        ambient_led.on()
+    else:
+        ambient_led.off()
 
 
     #printing out information
