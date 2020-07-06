@@ -49,8 +49,8 @@ seconds_since_start_list = []
 
 
 #parameter declaration:
-lighttime_interval = (9,19)  #time interval for lights on
-ambient_interval = (19,22)
+lighttime_interval = (10,18)  #time interval for lights on
+ambient_interval = (18,22)
 main_delay = 2             #delay in seconds for main loop
 #chat_id = set your telegram chat id here (or from configuration file)
 
